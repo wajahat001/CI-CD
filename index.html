@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PortFolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <nav class="d-flex justify-content-start">
+        <div id="home">Home</div>
+        <div id="about">About</div>
+        <div id="portfolio">PortFolio</div>
+        <div id="contact">Contact</div>
+    </nav>
+    <header class="d-flex justify-content-between">
+        <div class="intro d-flex flex-column">
+            <h2>AWS Cloud Technician</h2>
+            <h1 class="intro2">Hi, I'm <span>Wajahat</span></h1>
+            <h1 class="intro2">From Pakistan</h1>
+        </div>
+        <div class="img"></div>
+    </header>
+
+    <div class="body2  position-relative">
+        <div class="about d-flex justify-content-center align-items-center">
+            <div class="img2">
+                <img src="Images/Profile-removebg-preview.png" alt="" />
+            </div>
+            <div class="About">
+                <h1>About Me</h1>
+                <p>
+                    Hi, I’m Muhammad Wajahat Khalil, an IT student and aspiring front-end developer skilled in HTML, CSS, and JavaScript. I hold certifications in Google Technical Support and Meta Intro to Front-End Development, which have enhanced my web development skills. I recently interned at Digital Empowerment Pakistan, focusing on responsive design and performance optimization. Currently,also exploring DevOps and Docker to further my technical expertise. 
+                </p>
+                <div class="info">
+                    <p class="bio act-link" onclick="opentab('skills')">Skills</p>
+                    <p class="bio" onclick="opentab('edu')">Education</p>
+                    <p class="bio" onclick="opentab('exp')">Experience</p>
+                </div>
+                <div class="content act-content" id="skills">
+                    <ul>
+                        <li><span>HTML/CSS</span><br />Proficient in HTML/CSS</li>
+                        <li><span>JAVASCRIPT</span><br />Proficient in JS</li>
+                        <li><span>React</span><br />Had a basic knowldege of react</li>
+                    </ul>
+                </div>
+                <div class="content" id="edu">
+                    <ul>
+                        <li><span>2022-Present</span><br />BS-IT</li>
+                        <li><span>2020-2022</span><br />Intermediate</li>
+                        <li><span>2018-2020</span><br />Matriculation</li>
+                    </ul>
+                </div>
+                <div class="content" id="exp">
+                    <ul>
+                        <li><span>DEP (1 month)</span><br />Frontend Intern</li>
+                        <li><span>CodeAlpha (1 month)</span><br />Frontend Intern</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="work">
+        <h1>My Work</h1>
+        <div class="clones">
+            <div class="port">
+                <a class="ext-link" href=""><span class="desc">
+                        <h3>Forbes-Lite</h3>
+                        <p>Mini Version of Forbes Site</p>
+                    </span>
+                    <img src="Images/1.PNG" alt="" /></a>
+            </div>
+
+            <div class="port">
+                <a class="ext-link" href=""><span class="desc">
+                        <h3>Enzip-Clone</h3>
+                        <p>The Site that Offers Internships</p>
+                    </span>
+                    <img src="Images/2.PNG" alt="" /></a>
+            </div>
+            <div class="port">
+                <a class="ext-link" href=""><span class="desc">
+                        <h3>Music Player</h3>
+                        <p>Fetch the songs and albums files dynamically</p>
+                    </span>
+                    <img src="Images/3.PNG" alt="" /></a>
+            </div>
+        </div>
+        <div class="button text-center mt-5 ">
+            <button type="button">See More</button>
+        </div>
+    </div>
+    <div class="contact w-100 text-center position-relative">
+        Contact Me!
+        <ul>
+            <li >
+                <img class="invert" width="30px" src="Images/mail.png" alt="" />
+                wajahatchaudy1640@gmail.com
+            </li>
+            <li>
+                <img class="invert" src="Images/whatsapp-white.svg" alt="" />
+                +923078136135
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/muhammad-wajahat-khalil-21799a2b0" target="_blank">
+                    <img class="invert" width="25px" src="Images/linkedin.svg" alt="LinkedIn" width="30px" />
+                    &nbsp; LinkedIn
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

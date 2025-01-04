@@ -18,10 +18,16 @@ pipeline {
             steps {
                 sshagent(['AWS-KEY']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no ec2-user@54.144.252.32 "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 80:80 --name my-html-site my-html-site"
+                    ssh -o StrictHostKeyChecking=no ec2-user@54.221.128.206 "
+                    docker stop my-html-site || true &&
+                    docker rm my-html-site || true &&
+                    docker run -d -p 8081:8080 --name my-html-site my-html-site:latest
+                    "
                     '''
                 }
             }
         }
     }
 }
+
+

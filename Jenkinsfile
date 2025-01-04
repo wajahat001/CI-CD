@@ -5,7 +5,6 @@ pipeline {
         stage('Clone Repository') {
             steps {
                  git branch: 'main', url: 'https://github.com/wajahat001/CI-CD.git'
-                 credentialsId: 'AWS-KEY'
             }
         }
         stage('Build Docker Image') {

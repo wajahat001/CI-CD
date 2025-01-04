@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
-                        sh '''
+                        bat '''
                         ssh -o StrictHostKeyChecking=no -i $SSH_KEY ec2-user@54.221.128.206 "
                         docker stop my-html-site || true &&
                         docker rm my-html-site || true &&
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
-                        sh '''
+                        bat '''
                         ssh -o StrictHostKeyChecking=no -i $SSH_KEY ec2-user@54.221.128.206 "
                         docker image prune -f
                         "

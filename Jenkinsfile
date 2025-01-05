@@ -19,6 +19,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                         bat '''
+                        powershell -Command "Set-Acl -Path '%SSH_KEY%' -AclObject (Get-Acl -Path '%SSH_KEY%') -Owner $(whoami)"
                         ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@54.87.224.85 ^
                         "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 8081:8080 --name my-html-site my-html-site:latest"
                         '''

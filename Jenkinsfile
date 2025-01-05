@@ -19,7 +19,7 @@ pipeline {
                  script {
             withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                 bat '''
-                icacls "%SSH_KEY%" /inheritance:r /grant:r "%USERNAME%:F"
+                icacls "%SSH_KEY%" /inheritance:r /grant:r "%LocalSystem%:F"
                 ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@54.87.224.85 ^
                 "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 8081:8080 --name my-html-site my-html-site:latest"
                 '''

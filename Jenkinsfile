@@ -29,18 +29,5 @@ pipeline {
                 }
             }
         }
-        stage('Clean up Old Docker Images') {
-            steps {
-                script {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
-                        bat '''
-                        echo "Cleaning up Docker Images"
-                        ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@44.223.2.230 ^
-                        "docker image prune -f"
-                        '''
-                    }
-                }
-            }
-        }
     }
 }

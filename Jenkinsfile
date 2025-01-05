@@ -16,13 +16,15 @@ pipeline {
         }
         stage('Deploy to AWS') {
             steps {
-                 script {
-            withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
-                bat '''
-                icacls "%SSH_KEY%" /inheritance:r /grant:r "%LocalSystem%:F"
-                ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@54.87.224.85 ^
-                "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 8081:8080 --name my-html-site my-html-site:latest"
-                '''
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
+                        bat '''
+                        echo "Setting Permissions for SSH Key"
+                        icacls "%SSH_KEY%" /inheritance:r /grant:r "Administrators:F"
+                        echo "Running SSH Command to Deploy Docker Image"
+                        ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@54.87.224.85 ^
+                        "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 8081:8080 --name my-html-site my-html-site:latest"
+                        '''
                     }
                 }
             }
@@ -32,6 +34,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                         bat '''
+                        echo "Cleaning up Docker Images"
                         ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@54.87.224.85 ^
                         "docker image prune -f"
                         '''

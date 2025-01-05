@@ -22,7 +22,7 @@ pipeline {
                         echo "Setting Permissions for SSH Key"
                         icacls "%SSH_KEY%" /inheritance:r /grant:r "Administrators:F"
                         echo "Running SSH Command to Deploy Docker Image"
-                        ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@44.223.2.230 ^
+                        ssh -o StrictHostKeyChecking=no -i "%SSH_KEY%" ec2-user@3.95.213.110 ^
                         "docker stop my-html-site || true && docker rm my-html-site || true && docker run -d -p 8031:8080 --name my-html-site my-html-site:latest"
                         '''
                     }

@@ -18,18 +18,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerImage = docker.build("my-html-site")
-                }
+                def dockerImage = docker.build(DOCKER_IMAGE)
             }
         }
+    }
 
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.build("my-html-site").push()
-                }
+                dockerImage.push()
             }
         }
+    }
+
 
         stage('Deploy to AWS') {
             steps {
@@ -38,10 +39,11 @@ pipeline {
                         sh """
                             echo "Running SSH Command to Deploy Docker Image"
                             ssh -o StrictHostKeyChecking=no -i \$SSH_KEY ec2-user@52.91.94.32 << EOF
-                            docker stop my-html-site || true
-                            docker rm my-html-site || true
-                            docker pull wajahat001/my-html-site:latest
-                            docker run -d -p 80:80 --name my-html-site wajahat001/my-html-site:latest
+                            sudo systemctl status docker || sudo service docker start
+                            sudo docker stop my-html-site || true
+                            sudo docker rm my-html-site || true
+                            sudo docker pull wajahat001/my-html-site:latest
+                            sudo docker run -d -p 80:80 --name my-html-site wajahat001/my-html-site:latest
                             EOF
                         """
                     }

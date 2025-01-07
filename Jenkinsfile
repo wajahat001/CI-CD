@@ -27,8 +27,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Use the dockerImage variable here
-                    dockerImage.push()
+                    // Authenticate to Docker Hub using Jenkins credentials
+                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKER-HUB') {
+                        dockerImage.push()
+                    }
                 }
             }
         }
@@ -43,8 +45,8 @@ pipeline {
                             sudo systemctl status docker || sudo service docker start
                             sudo docker stop my-html-site || true
                             sudo docker rm my-html-site || true
-                            sudo docker pull wajahat001/my-html-site:latest
-                            sudo docker run -d -p 80:80 --name my-html-site wajahat001/my-html-site:latest
+                            sudo docker pull my-html-site
+                            sudo docker run -d -p 80:80 --name my-html-site my-html-site
                             EOF
                         """
                     }

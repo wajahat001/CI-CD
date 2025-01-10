@@ -40,7 +40,6 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                         bat """
-                            echo "Running SSH Command to Deploy Docker Image"
                             ssh -o StrictHostKeyChecking=no -i %SSH_KEY%  ec2-user@54.86.33.103 << EOF
                             sudo systemctl status docker || sudo service docker start
                             sudo docker stop my-html-site || true

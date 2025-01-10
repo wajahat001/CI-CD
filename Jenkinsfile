@@ -45,7 +45,7 @@ pipeline {
                     docker stop wajahat001/my-html-site 
                     docker rm wajahat001/my-html-site 
                     docker pull wajahat001/my-html-site
-                    docker run -d -p 80:80 --name my-html-site wajahat001/my-html-site:latest
+                    docker run -d -p 80:80  wajahat001/my-html-site:latest
                     """
                     }
                 }

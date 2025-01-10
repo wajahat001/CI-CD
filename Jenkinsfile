@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "wajahat001/my-html-site:latest"
         EC2_USER = "ec2-user"
-        EC2_IP = "54.86.33.103"
+        EC2_IP = "3.82.221.106"
     }
 
     stages {
@@ -40,7 +40,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                     bat """
-                    ssh -o StrictHostKeyChecking=no -i %SSH_KEY% ec2-user@54.86.33.103
+                    ssh -o StrictHostKeyChecking=no -i %SSH_KEY% ec2-user@3.82.221.106
                     "sudo systemctl status docker || sudo service docker start"
                     "sudo docker stop my-html-site || true"
                     "sudo docker rm my-html-site || true"

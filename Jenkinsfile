@@ -40,7 +40,7 @@ pipeline {
                 script {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                     bat """
-                    ssh -o StrictHostKeyChecking=no -i %SSH_KEY% ec2-user@3.82.221.106
+                    ssh -T -o StrictHostKeyChecking=no -i %SSH_KEY% ec2-user@3.82.221.106
                     "sudo systemctl status docker || sudo service docker start"
                     "sudo docker stop my-html-site || true"
                     "sudo docker rm my-html-site || true"

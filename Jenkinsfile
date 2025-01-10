@@ -42,10 +42,10 @@ pipeline {
                     bat """
                     icacls "%SSH_KEY%" /inheritance:r /grant:r "Administrators:F"
                     ssh -T -o StrictHostKeyChecking=no -i %SSH_KEY% ec2-user@3.82.221.106
-                    docker stop my-html-site || true
-                    docker rm my-html-site || true
-                    docker pull my-html-site
-                    docker run -d -p 80:80 --name my-html-site my-html-site
+                    docker stop wajahat001/my-html-site 
+                    docker rm wajahat001/my-html-site 
+                    docker pull wajahat001/my-html-site
+                    docker run -d -p 80:80 --name wajahat001/my-html-site wajahat001/my-html-site
                     """
                     }
                 }

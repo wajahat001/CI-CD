@@ -4,8 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "wajahat001/my-html-site:latest"
         EC2_USER = "ec2-user"
-        EC2_IP = "52.91.94.32"
-        REMOTE_DIR = "/var/www/portfolio"
+        EC2_IP = "54.86.33.103"
     }
 
     stages {
@@ -19,21 +18,22 @@ pipeline {
             steps {
                 script {
                     // Define the dockerImage variable here to make it accessible later
-                    dockerImage = docker.build(DOCKER_IMAGE)
+                    dockerImage = docker.build('wajahat001/my-html-site:latest')
                 }
             }
         }
 
         stage('Push Docker Image') {
-            steps {
-                script {
-                    // Authenticate to Docker Hub using Jenkins credentials
-                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKER-HUB') {
-                        dockerImage.push()
-                    }
-                }
+        steps {
+        script {
+            // Push the pre-built Docker image to Docker Hub
+            docker.withRegistry('https://index.docker.io/v1/', 'DOCKER-HUB') {
+                dockerImage.push()  // Push the image with the 'latest' tag
             }
         }
+    }
+}
+
 
         stage('Deploy to AWS') {
             steps {
@@ -41,7 +41,7 @@ pipeline {
                     withCredentials([sshUserPrivateKey(credentialsId: 'AWS-KEY', keyFileVariable: 'SSH_KEY')]) {
                         sh """
                             echo "Running SSH Command to Deploy Docker Image"
-                            ssh -o StrictHostKeyChecking=no -i \$SSH_KEY ec2-user@52.91.94.32 << EOF
+                            ssh -o StrictHostKeyChecking=no -i \$SSH_KEY ec2-user@54.86.33.103 << EOF
                             sudo systemctl status docker || sudo service docker start
                             sudo docker stop my-html-site || true
                             sudo docker rm my-html-site || true

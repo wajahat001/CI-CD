@@ -1,13 +1,25 @@
 {
-    "name": "portfolio",
-    "version": "1.0.0",
-    "description": "Simple portfolio built with HTML, CSS, and JavaScript",
-    "main": "index.html",
-    "scripts": {
-      "start": "http-server -o"
-    },
-    "devDependencies": {
-      "http-server": "^0.12.3"
-    }
+  "name": "cicd",
+  "version": "1.0.0",
+  "description": "A simple Node.js project with CI/CD integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wajahat001/CI-CD.git"
+  },
+  "keywords": ["CI/CD", "Node.js", "Express", "portfolio"],
+  "author": "Wajahat",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/wajahat001/CI-CD/issues"
+  },
+  "homepage": "https://github.com/wajahat001/CI-CD#readme",
+  "dependencies": {
+    "express": "^4.21.2"
   }
-  
+}
